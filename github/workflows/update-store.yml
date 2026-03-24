@@ -1,0 +1,22 @@
+name: Update DevStore Source
+on:
+  push:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Run Generator
+        run: python generator.py
+      - name: Commit changes
+        run: |
+          git config --global user.name 'R3ALCYB3R-Bot'
+          git config --global user.email 'bot@r3alcyb3r.dev'
+          git add apps.json
+          git commit -m "Auto-update DevStore Source" || exit 0
+          git push
