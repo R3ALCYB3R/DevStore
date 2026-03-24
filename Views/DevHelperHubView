@@ -1,0 +1,20 @@
+import SwiftUI
+
+struct DevHelperHubView: View {
+    var body: some View {
+        VStack {
+            Text("DevHelper Dashboard")
+                .font(.title)
+            Text("Store URL: r3alcyb3r.github.io/DevStore")
+                .foregroundColor(.secondary)
+            
+            Spacer()
+            
+            Button("Refresh All Apps") {
+                // Trigger JIT / Sideload Refresh
+            }
+            .buttonStyle(.borderedProminent)
+        }
+        .padding()
+    }
+}
