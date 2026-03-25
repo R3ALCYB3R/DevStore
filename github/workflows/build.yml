@@ -1,0 +1,34 @@
+name: Build DevHelper
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch: # Allows you to start the build manually from your phone
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest
+
+      - name: Build Archive
+        run: |
+          xcodebuild archive \
+            -project DevHelper.xcodeproj \
+            -scheme DevHelper \
+            -configuration Release \
+            -sdk iphoneos \
+            -archivePath $PWD/build/DevHelper.xcarchive \
+            SKIP_INSTALL=NO
+
+      - name: Export IPA Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: DevHelper-IPA
+          path: build/DevHelper.xcarchive
