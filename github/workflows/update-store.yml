@@ -1,22 +1,26 @@
-name: Update DevStore Source
+name: Update Store Data
+
 on:
   push:
-    branches: [ main ]
+    paths:
+      - 'ipas/**' # Only runs when you add a new app file
+
 jobs:
-  build:
+  update-json:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-      - name: Run Generator
-        run: python generator.py
-      - name: Commit changes
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run Update Script
         run: |
-          git config --global user.name 'R3ALCYB3R-Bot'
-          git config --global user.email 'bot@r3alcyb3r.dev'
+          # This simple script adds the new IPAs to your list
+          python3 .github/scripts/update_apps.py
+
+      - name: Commit Changes
+        run: |
+          git config --global user.name "DevStore-Bot"
+          git config --global user.email "bot@github.com"
           git add apps.json
-          git commit -m "Auto-update DevStore Source" || exit 0
+          git commit -m "Auto-update apps.json"
           git push
