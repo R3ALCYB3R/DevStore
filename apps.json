@@ -1,0 +1,15 @@
+{
+  "name": "DevStore",
+  "identifier": "com.r3alcyb3r.devstore",
+  "apps": [
+    {
+      "name": "DevHelper",
+      "bundleIdentifier": "com.r3alcyb3r.devhelper",
+      "developerName": "R3ALCYB3R",
+      "version": "1.0.0",
+      "downloadURL": "https://github.com/R3ALCYB3R/DevStore/raw/main/ipas/DevHelper.ipa",
+      "iconURL": "https://github.com/R3ALCYB3R/DevStore/raw/main/assets/icons/overdrive.png",
+      "description": "Stealth JIT enabler and pairing file manager. Includes 10s-hold security gate."
+    }
+  ]
+}
