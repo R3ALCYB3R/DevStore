@@ -1,0 +1,27 @@
+name: Build DevHelper IPA
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build Archive
+        run: |
+          xcodebuild archive \
+            -project DevHelper.xcodeproj \
+            -scheme DevHelper \
+            -archivePath $PWD/DevHelper.xcarchive \
+            -sdk iphoneos \
+            SKIP_INSTALL=NO
+
+      - name: Export Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: DevHelper-Build
+          path: DevHelper.xcarchive
