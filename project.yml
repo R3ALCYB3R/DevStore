@@ -1,0 +1,16 @@
+name: DevStore
+options:
+  bundleId: com.r3alcyb3r.devstore
+targets:
+  DevStore:
+    type: application
+    platform: iOS
+    deploymentTarget: "15.0"
+    sources:
+      - Sources
+    settings:
+      base:
+        INFOPLIST_FILE: Sources/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.r3alcyb3r.devstore
+        MARKETING_VERSION: 1.0.0
+        CURRENT_PROJECT_VERSION: 1
